@@ -2,24 +2,24 @@ package harbour.repository;
 
 import harbour.config.factory.*;
 import harbour.domain.*;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+//import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import org.testng.annotations.*;
+/*import org.testng.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
-import harbour.App;
+import harbour.App;*/
 
 /**
  * Author P.Qhu  on 2015/08/11.
  */
 /*@SpringApplicationConfiguration(classes= {App.class})
 @WebAppConfiguration*/
-public class TestCrudPort extends AbstractTestNGSpringContextTests {
+public class TestCrudPort {//extends AbstractTestNGSpringContextTests {
     private Long id;
     //@Autowired
     PortRepository repository;
@@ -126,7 +126,7 @@ public class TestCrudPort extends AbstractTestNGSpringContextTests {
         Assert.assertNotNull(port.getId());
     }
 
-   // @Test(dependsOnMethods = "create")
+    //@Test(dependsOnMethods = "create")
     public void read() throws Exception {
 
         Port port = repository.findOne(id);
