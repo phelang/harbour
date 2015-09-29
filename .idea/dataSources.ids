@@ -27,8 +27,8 @@
       <column name="terminalid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="cargoid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_5q0ysgy0tkj02k9cvjfg3rsrv" columns="terminalid" ref-table="terminal" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_d2t1x9qc6iqebqr5makynur69" columns="cargoid" ref-table="cargo" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_5q0ysgy0tkj02k9cvjfg3rsrv" columns="terminalid" ref-table="terminal" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_8ai3siipy16e22l4gxgtv03wr" table="package_product" schema="" catalog="harbour" columns="containerid"/>
       <index name="FK_5q0ysgy0tkj02k9cvjfg3rsrv" unique="false" columns="terminalid"/>
       <index name="FK_d2t1x9qc6iqebqr5makynur69" unique="false" columns="cargoid"/>
@@ -41,8 +41,8 @@
       <column name="cargoid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="portid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_3xwsjy45a97s8835web908wdq" columns="cargoid" ref-table="cargo" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_eh4gh9bui4r1jtr9epiux9baf" columns="portid" ref-table="port" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_3xwsjy45a97s8835web908wdq" columns="cargoid" ref-table="cargo" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_3xwsjy45a97s8835web908wdq" unique="false" columns="cargoid"/>
       <index name="FK_eh4gh9bui4r1jtr9epiux9baf" unique="false" columns="portid"/>
     </table>
@@ -66,11 +66,11 @@
       <column name="package_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="logisticid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="containerid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="warehouseid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="containerid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="FK_4eiy7sg953a65vdlktpaw5ibh" columns="warehouseid" ref-table="warehouse" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_8ai3siipy16e22l4gxgtv03wr" columns="containerid" ref-table="container" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_4eiy7sg953a65vdlktpaw5ibh" columns="warehouseid" ref-table="warehouse" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_sr6yssj32qvatayusvrxowym8" columns="logisticid" ref-table="logistic_company" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_4eiy7sg953a65vdlktpaw5ibh" unique="false" columns="warehouseid"/>
       <index name="FK_8ai3siipy16e22l4gxgtv03wr" unique="false" columns="containerid"/>
