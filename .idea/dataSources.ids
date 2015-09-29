@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - harbour@localhost" uuid="55f97a98-246b-44e3-8a5a-a03f90beded1">
+    <database-info product="MySQL" version="5.6.19-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="harbour"/>
+    <table name="cargo" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="breadth" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cargo_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="container_load" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="height" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="length" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_d2t1x9qc6iqebqr5makynur69" table="container" schema="" catalog="harbour" columns="cargoid"/>
+      <exported-key name="FK_3xwsjy45a97s8835web908wdq" table="dock" schema="" catalog="harbour" columns="cargoid"/>
+    </table>
+    <table name="container" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="container_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="height" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="width" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="terminalid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="cargoid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_5q0ysgy0tkj02k9cvjfg3rsrv" columns="terminalid" ref-table="terminal" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_d2t1x9qc6iqebqr5makynur69" columns="cargoid" ref-table="cargo" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_8ai3siipy16e22l4gxgtv03wr" table="package_product" schema="" catalog="harbour" columns="containerid"/>
+      <index name="FK_5q0ysgy0tkj02k9cvjfg3rsrv" unique="false" columns="terminalid"/>
+      <index name="FK_d2t1x9qc6iqebqr5makynur69" unique="false" columns="cargoid"/>
+    </table>
+    <table name="dock" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="breadth" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="dock_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="length" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cargoid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="portid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_3xwsjy45a97s8835web908wdq" columns="cargoid" ref-table="cargo" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_eh4gh9bui4r1jtr9epiux9baf" columns="portid" ref-table="port" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_3xwsjy45a97s8835web908wdq" unique="false" columns="cargoid"/>
+      <index name="FK_eh4gh9bui4r1jtr9epiux9baf" unique="false" columns="portid"/>
+    </table>
+    <table name="logistic_company" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="company_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tel" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="portid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_lv9xfbk5tyou2tf4ye7rvodp4" columns="portid" ref-table="port" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_sr6yssj32qvatayusvrxowym8" table="package_product" schema="" catalog="harbour" columns="logisticid"/>
+      <index name="FK_lv9xfbk5tyou2tf4ye7rvodp4" unique="false" columns="portid"/>
+    </table>
+    <table name="package_product" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="item_type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="package_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="package_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="logisticid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="containerid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="warehouseid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_4eiy7sg953a65vdlktpaw5ibh" columns="warehouseid" ref-table="warehouse" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_8ai3siipy16e22l4gxgtv03wr" columns="containerid" ref-table="container" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_sr6yssj32qvatayusvrxowym8" columns="logisticid" ref-table="logistic_company" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_4eiy7sg953a65vdlktpaw5ibh" unique="false" columns="warehouseid"/>
+      <index name="FK_8ai3siipy16e22l4gxgtv03wr" unique="false" columns="containerid"/>
+      <index name="FK_sr6yssj32qvatayusvrxowym8" unique="false" columns="logisticid"/>
+    </table>
+    <table name="port" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="city" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="continent" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="postal_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="tel" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="port_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="port_type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_eh4gh9bui4r1jtr9epiux9baf" table="dock" schema="" catalog="harbour" columns="portid"/>
+      <exported-key name="FK_lv9xfbk5tyou2tf4ye7rvodp4" table="logistic_company" schema="" catalog="harbour" columns="portid"/>
+      <exported-key name="FK_eql73gdiixwoemsm482j1hvop" table="terminal" schema="" catalog="harbour" columns="portid"/>
+      <exported-key name="FK_b1v9fjmsr2njb9equelnavga" table="warehouse" schema="" catalog="harbour" columns="portid"/>
+    </table>
+    <table name="terminal" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="container_load" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="teminal_location" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="terminal_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="portid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_eql73gdiixwoemsm482j1hvop" columns="portid" ref-table="port" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_5q0ysgy0tkj02k9cvjfg3rsrv" table="container" schema="" catalog="harbour" columns="terminalid"/>
+      <index name="FK_eql73gdiixwoemsm482j1hvop" unique="false" columns="portid"/>
+    </table>
+    <table name="warehouse" schema="" catalog="harbour" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="package_load" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="warehouse_code" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="portid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_b1v9fjmsr2njb9equelnavga" columns="portid" ref-table="port" ref-schema="" ref-catalog="harbour" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_4eiy7sg953a65vdlktpaw5ibh" table="package_product" schema="" catalog="harbour" columns="warehouseid"/>
+      <index name="FK_b1v9fjmsr2njb9equelnavga" unique="false" columns="portid"/>
+    </table>
+  </data-source>
+</component>
