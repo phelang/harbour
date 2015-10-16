@@ -57,7 +57,7 @@ public class PackageProductController {
 
                     // create a link to this method on
                     Link(
-                    linkTo(methodOn(PackageProductController.class).getAllPackageProd())
+                    linkTo(methodOn(PackageProductController.class))
                             .slash(pkgProdRes.getResId()).toString()).withSelfRel()
             );
 
@@ -162,28 +162,31 @@ public class PackageProductController {
      */
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<PackageProduct> updatePackage(@RequestBody PackageProduct newPackageProduct) {
+    public ResponseEntity<String> updatePackage(@RequestBody PackageProduct newPackageProduct) {
 
         /* an Object that is passed here must already be read from database using getPackageProduct
         and must be an existing object else a new object is inserted.
         */
 
+        HttpHeaders headers = new HttpHeaders();
         service.update(newPackageProduct);
-        return new ResponseEntity<PackageProduct>(newPackageProduct, HttpStatus.OK);
+        return new ResponseEntity<>(headers, HttpStatus.OK);
     }
 
     //------------------- Delete a PackageProduct --------------------------------------------------------
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<PackageProduct> deletePackageProd(@PathVariable("id") long id) {
+    public ResponseEntity<Void> deletePackageProd(@PathVariable("id") long id) {
         System.out.println("Fetching & Deleting PackageProduct with id " + id);
 
         PackageProduct pgkProduct = service.findById(id);
         if (pgkProduct == null) {
-            return new ResponseEntity<PackageProduct>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         service.delete(pgkProduct);
-        return new ResponseEntity<PackageProduct>(HttpStatus.NO_CONTENT);
+
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<Void>(headers, HttpStatus.NO_CONTENT);
     }
 }
